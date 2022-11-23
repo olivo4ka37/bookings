@@ -1,0 +1,18 @@
+mode: set
+github.com/olivo4ka37/bookings/internal/forms/errors.go:6.44,8.2 1 1
+github.com/olivo4ka37/bookings/internal/forms/errors.go:11.42,13.18 2 0
+github.com/olivo4ka37/bookings/internal/forms/errors.go:17.2,17.14 1 0
+github.com/olivo4ka37/bookings/internal/forms/errors.go:13.18,15.3 1 0
+github.com/olivo4ka37/bookings/internal/forms/forms.go:17.29,19.2 1 1
+github.com/olivo4ka37/bookings/internal/forms/forms.go:22.33,27.2 1 1
+github.com/olivo4ka37/bookings/internal/forms/forms.go:30.43,31.31 1 1
+github.com/olivo4ka37/bookings/internal/forms/forms.go:31.31,33.37 2 1
+github.com/olivo4ka37/bookings/internal/forms/forms.go:33.37,35.4 1 1
+github.com/olivo4ka37/bookings/internal/forms/forms.go:40.56,42.13 2 0
+github.com/olivo4ka37/bookings/internal/forms/forms.go:45.2,45.13 1 0
+github.com/olivo4ka37/bookings/internal/forms/forms.go:42.13,44.3 1 0
+github.com/olivo4ka37/bookings/internal/forms/forms.go:49.74,51.21 2 0
+github.com/olivo4ka37/bookings/internal/forms/forms.go:55.2,55.13 1 0
+github.com/olivo4ka37/bookings/internal/forms/forms.go:51.21,54.3 2 0
+github.com/olivo4ka37/bookings/internal/forms/forms.go:59.38,60.40 1 0
+github.com/olivo4ka37/bookings/internal/forms/forms.go:60.40,62.3 1 0
