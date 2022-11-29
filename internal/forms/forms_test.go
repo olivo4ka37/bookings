@@ -40,3 +40,83 @@ func TestForm_Required(t *testing.T) {
 		t.Error("shows does not have fields when it does")
 	}
 }
+
+func TestForm_Has(t *testing.T) {
+	r := httptest.NewRequest("POST", "/pohuy", nil)
+	form := New(r.PostForm)
+
+	if form.Has("SFsafs") {
+		t.Error("Form shows has field when it does not")
+	}
+
+	postedData := url.Values{}
+	postedData.Add("Anton Gandon", "Anton Gandon")
+	form = New(postedData)
+
+	if !form.Has("Anton Gandon") {
+		t.Error("Got false when we should have been true")
+	}
+}
+
+func TestForm_MinLength(t *testing.T) {
+	r := httptest.NewRequest("POST", "/pohuy", nil)
+	form := New(r.PostForm)
+
+	if form.MinLength("Anton Gandon", 3) {
+		t.Error("Form shows that field have required length when it's not")
+	}
+
+	isError := form.Errors.Get("Anton Gandon")
+	if isError == "" {
+		t.Error("Should have an error, but did not get one")
+	}
+
+	postedData := url.Values{}
+	postedData.Add("Anton Gandon", "Anton Gandon")
+	form = New(postedData)
+
+	if !form.MinLength("Anton Gandon", 3) {
+		t.Error("Form shows that field doesnt have required length when it is")
+	}
+
+	isError = form.Errors.Get("Anton Gandon")
+	if isError != "" {
+		t.Error("Have an error, when not suposed to")
+	}
+
+	postedData = url.Values{}
+	postedData.Add("Anton Super Gandon", "joke")
+	form = New(postedData)
+
+	if form.MinLength("Anton Super Gandon", 300) {
+		t.Error("Form shows that field have required length when it doesnt")
+	}
+}
+
+func TestForm_IsEmail(t *testing.T) {
+	postedData := url.Values{}
+	form := New(postedData)
+
+	form.IsEmail("")
+	if form.Valid() {
+		t.Error("Show that email is valid when email is not exist")
+	}
+
+	postedData = url.Values{}
+	postedData.Add("email", "Kekw@anytext.com")
+	form = New(postedData)
+
+	form.IsEmail("email")
+	if !form.Valid() {
+		t.Error("Show that email invalid when it valid")
+	}
+
+	postedData = url.Values{}
+	postedData.Add("email", "kekw")
+	form = New(postedData)
+
+	form.IsEmail("email")
+	if form.Valid() {
+		t.Error("Show that email valid when it invalid")
+	}
+}
