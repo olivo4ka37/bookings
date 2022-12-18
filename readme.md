@@ -1,5 +1,12 @@
-# Bookings and Reservation 
+# How to Run?
 
+- Use run.bat file
+
+# Как запустить проект?
+
+- Используйте run.bat file
+
+# Bookings and Reservation
 This is the repository for my bookings and resrvation project.
 
 - Built in Go version 1.19
