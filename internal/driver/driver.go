@@ -2,6 +2,7 @@ package driver
 
 import (
 	"database/sql"
+	"log"
 	"time"
 
 	_ "github.com/jackc/pgx/v5"
@@ -20,8 +21,8 @@ const maxOpenDbConn = 10
 const maxIdleDbConn = 5
 const maxDbLifeTime = 5 * time.Minute
 
-// ConnectionSQL Creates Database pool for PostgreSQL
-func ConnectionSQL(dsn string) (*DB, error) {
+// ConnectSQL Creates Database pool for PostgreSQL
+func ConnectSQL(dsn string) (*DB, error) {
 	d, err := NewDataBase(dsn)
 	if err != nil {
 		panic(err)
@@ -45,6 +46,7 @@ func ConnectionSQL(dsn string) (*DB, error) {
 func testDB(d *sql.DB) error {
 	err := d.Ping()
 	if err != nil {
+		log.Println("Cannot ping a database")
 		return err
 	}
 
@@ -55,10 +57,12 @@ func testDB(d *sql.DB) error {
 func NewDataBase(dsn string) (*sql.DB, error) {
 	db, err := sql.Open("pgx", dsn)
 	if err != nil {
+		log.Println("cannot create a database")
 		return nil, err
 	}
 
 	if err = db.Ping(); err != nil {
+		log.Println("Cannot ping a  new database")
 		return nil, err
 	}
 
